@@ -1,0 +1,759 @@
+таблица умножения
+
+        Scanner console = new Scanner(System.in);
+        System.out.println("Введите число от 1 до 10:");
+        int number = console.nextInt();
+        int result;
+        if (number <= 10 && number >= 1) {
+            System.out.println("Таблица умножения для числа " + number);
+            for (int i = 1; i <= 10; i++) {
+                result = number * i;
+                System.out.println(number + " X " + i + " = " + result);
+            }
+        } else {
+            System.out.println("Введенное число не в диапазоне от 1 до 10");
+        }
+		
+		
+		
+квадр ур-ие
+
+        double x1, x2;
+        Scanner console = new Scanner(System.in);
+        System.out.println("Введите коэф а:");
+        double koef_a = console.nextDouble();
+        System.out.println("Введите коэф b:");
+        double koef_b = console.nextDouble();
+        System.out.println("Введите коэф c:");
+        double koef_c = console.nextDouble();
+        double discrim = koef_b * koef_b - 4 * koef_a * koef_c;
+        if (discrim < 0) {
+            System.out.println("Уравнение не имеет действительных корней");
+        } else if (discrim == 0.0) {
+            x1 = (-1 * koef_b) / (2 * koef_a);
+            System.out.println("Уравнение имеет один действительный корень: " + x1);
+        } else {
+            x1 = ((-1 * koef_b) + sqrt(discrim)) / (2 * koef_a);
+            x2 = ((-1 * koef_b) - sqrt(discrim)) / (2 * koef_a);
+            System.out.println("Уравнение имеет два действительных корня: " + x1 + " и " + x2);
+        }
+		
+степень
+
+        Scanner console = new Scanner(System.in);
+        System.out.println("Введите число:");
+        int number = console.nextInt();
+        System.out.println("Введите степень:");
+        int degree = console.nextInt();
+        int result = number;
+        for (int i = 1; i < degree; i++) {
+            result = result * number;
+        }
+        System.out.println(number + "^" + degree + " = " + result);
+		
+		
+		
+		
+массивы
+
+        Scanner console = new Scanner(System.in);
+        System.out.print("Введите размер массива N: ");
+        int N = console.nextInt();
+        int[] array = new int[N];
+        // заполнение массива
+        for (int i = 0; i < array.length; i++) {
+            System.out.print("Введите элемент " + i + ": ");
+            array[i] = console.nextInt();
+        }
+        int max_element = array[0];
+        int min_element = array[0];
+        // реализация логики задачи
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] > max_element) {
+                max_element = array[i];
+            }
+            if (array[i] < min_element) {
+                min_element = array[i];
+            }
+
+        }
+        // вывод результата
+        System.out.println("Максимальный элемент: " + max_element + " ");
+        System.out.println("Минимальный элемент: " + min_element + " ");
+        System.out.println("Четные числа массива: ");
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] % 2 == 0) {
+                System.out.print(array[i] + " ");
+            }
+        }
+		
+		
+		
+		
+		
+		
+Дан массив, найти в нём число которое встречается чаще всего в массиве
+	
+		Scanner console = new Scanner(System.in);
+        System.out.print("Введите размер массива N: ");
+        int N = console.nextInt();
+        int[] array = new int[N];
+        // заполнение массива
+        for (int i = 0; i < array.length; i++) {
+            System.out.print("Введите элемент массива " + i + ": ");
+            array[i] = console.nextInt();
+        }
+        // количество повторений и элемент
+        int max_count_repeats = 1;
+        int element = array[0];
+        // вычисляем количество повторений каждого элемента и запоминаем элемент
+        for (int j = 0; j < array.length - 1; j++) {
+            int count_this_element_repeat = 1;
+            for (int i = j + 1; i < array.length; i++) {
+                if (array[j] == array[i]) {
+                    count_this_element_repeat++;
+                }
+            }
+            if (count_this_element_repeat > max_count_repeats)
+            {
+                max_count_repeats = count_this_element_repeat;
+                element = array[j];
+            }
+        }
+        System.out.println("Чаще всего встречается " + element);
+        System.out.println("Число повторений " + max_count_repeats);
+		
+		
+		
+		
+		
+		
+Дан массив, требуется перенести все нули в этом массиве в конец		
+		
+		Scanner console = new Scanner(System.in);
+        System.out.print("Введите размер массива N: ");
+        int N = console.nextInt();
+        int[] array = new int[N];
+        int count_result = 0;
+        int count_zero = 0;
+        // заполнение массива и вычисление количества нулей и не нулей
+        for (int i = 0; i < array.length; i++) {
+            System.out.print("Введите элемент массива " + i + ": ");
+            array[i] = console.nextInt();
+            if (array[i] == 0) {
+                count_zero++;
+            } else {
+                count_result++;
+            }
+        }
+        System.out.println(count_result + " " + count_zero); // мониторинг работы цикла подсчета
+        System.out.println("Исходный массив: ");
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println("");
+        System.out.println("Итоговый массив: ");
+        // Выводим сначала массив не нулей, затем массив нулей
+        int array_result_index = 0;
+        if (count_result != 0) {
+            int[] array_result = new int[count_result];
+            for (int i = 0; i < array.length; i++) {
+                if (array[i] != 0) {
+                    array_result[array_result_index] = array[i];
+                    array_result_index++;
+                }
+            }
+            for (int i = 0; i < array_result.length; i++) {
+                System.out.print(array_result[i] + " ");
+            }
+        }
+
+        int array_zero_index = 0;
+        if (count_zero != 0) {
+            int[] array_zero = new int[count_zero];
+            for (int i = 0; i < array.length; i++) {
+                if (array[i] == 0) {
+                    array_zero[array_zero_index] = array[i];
+                    array_zero_index++;
+                }
+            }
+            for (int i = 0; i < array_zero.length; i++) {
+                System.out.print(array_zero[i] + " ");
+            }
+        }
+		
+		
+		
+		
+ Найти в массиве чисел A такие два числа, которые при сложении дадут число X, и вывести их индексы	
+	
+		Scanner console = new Scanner(System.in);
+        System.out.print("Введите размер массива N: ");
+        int N = console.nextInt();
+        int[] array = new int[N];
+        System.out.print("Введите сумму, которую надо найти: ");
+        int target = console.nextInt();
+        int index_first = -1;
+        int index_second = -1;
+        // заполнение массива
+        for (int i = 0; i < array.length; i++) {
+            System.out.print("Введите элемент массива " + i + ": ");
+            array[i] = console.nextInt();
+        }
+        for (int j = 0; j < array.length - 1; j++) {
+            for (int i = j + 1; i < array.length; i++) {
+                if (array[j] + array[i] == target) {
+                    index_first = j;
+                    index_second = i;
+                }
+            }
+        }
+        if (index_first >= 0 && index_second >= 0) {
+            System.out.println("Сумма элементов с индексами " + index_first + " и " + index_second + " = " + target);
+            System.out.println("Элементы: " + array[index_first] + " и " + array[index_second]);
+        } else {
+            System.out.println("Элементов, удовлетворяющих условию не найдено");
+        }
+		
+		
+Отсортировать массив по возрастанию
+		Scanner console = new Scanner(System.in);
+        System.out.print("Введите размер массива N: ");
+        int N = console.nextInt();
+        int[] array = new int[N];
+        int bubble_proxy = 0;
+        // заполнение массива
+        for (int i = 0; i < array.length; i++) {
+            System.out.print("Введите элемент массива " + i + ": ");
+            array[i] = console.nextInt();
+        }
+        for (int j = 0; j < array.length - 1; j++) {
+            for (int i = j + 1; i < array.length; i++) {
+                if (array[j] > array[i]) {
+                    bubble_proxy = array[j];
+                    array[j] = array[i];
+                    array[i] = bubble_proxy;
+                }
+            }
+        }
+        System.out.println("Отсортированный массив: ");
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+		
+		
+		
+		
+Доработка функций с урока
+
+    public static void main(String[] args) {
+        int[] result_array = createArray();
+        printArray(result_array);
+
+    }
+
+    public static int[] createArray() {
+        Scanner console = new Scanner(System.in);
+        System.out.print("Введите размер массива N: ");
+        int N = console.nextInt();
+        int[] array = new int[N];
+        // заполнение массива
+        for (int i = 0; i < array.length; i++) {
+            System.out.print("Введите элемент массива " + i + ": ");
+            array[i] = console.nextInt();
+        }
+        return array;
+    }
+
+    public static void printArray(int[] print_array) {
+        System.out.println("массив: ");
+        for (int i = 0; i < print_array.length; i++) {
+            System.out.print(print_array[i] + " ");
+        }
+
+    }
+	
+	
+	
+	
+Макс выгода
+
+ public static void main(String[] args) {
+        int[] array = createArray();
+        int result_difference = bestOffer(array);
+        printAnswer(result_difference);
+
+    }
+
+    public static int[] createArray() {
+        Scanner console = new Scanner(System.in);
+        System.out.print("Введите размер массива N: ");
+        int N = console.nextInt();
+        int[] array = new int[N];
+        // заполнение массива
+        for (int i = 0; i < array.length; i++) {
+            System.out.print("Введите элемент массива " + i + ": ");
+            array[i] = console.nextInt();
+        }
+        return array;
+    }
+
+
+    public static int bestOffer(int[] calc_array) {
+        int max_difference = calc_array[1] - calc_array[0];
+        for (int j = 0; j < calc_array.length - 1; j++) {
+            for (int i = j + 1; i < calc_array.length; i++) {
+                if ((calc_array[i] - calc_array[j]) > max_difference) {
+                    max_difference = calc_array[i] - calc_array[j];
+
+                }
+            }
+        }
+        return max_difference;
+    }
+
+    public static void printAnswer(int print_result) {
+        System.out.println("максимальная выгода: " + print_result);
+
+    }
+	
+	
+	
+	
+Не дубль
+
+
+    public static void main(String[] args) {
+        int[] array = createArray();
+        findNotRepeat(array);
+    }
+
+    public static int[] createArray() {
+        Scanner console = new Scanner(System.in);
+        System.out.print("Введите размер массива N: ");
+        int N = console.nextInt();
+        int[] array = new int[N];
+        // заполнение массива
+        for (int i = 0; i < array.length; i++) {
+            System.out.print("Введите элемент массива " + i + ": ");
+            array[i] = console.nextInt();
+        }
+        return array;
+    }
+
+
+    public static void findNotRepeat(int[] array) {
+        boolean[] array_indexes = new boolean[array.length];
+        int index_not_repeat_element = 0;
+        for (int j = 0; j < array.length; j++) {
+            for (int i = 0; i < array.length; i++) {
+                if (array[j] == array[i] && j != i) {
+                    array_indexes[j] = true;
+                }
+            }
+        }
+        for (int i = 0; i < array_indexes.length; i++) {
+            if (!array_indexes[i]) {
+                index_not_repeat_element = i;
+                break;
+            }
+        }
+        System.out.println("нет дубля у числа: " + array[index_not_repeat_element]);
+    }
+	
+	
+	
+	
+Объединить два отсортированных массива
+
+    public static void uniteTwoArrays() {
+        int[] array_a = new int[]{1, 1, 4, 5, 5};
+        int[] array_b = new int[]{1, 1, 4, 5, 6, 7};
+        int[] array_result = new int[array_a.length + array_b.length];
+        int index_result_array = 0;
+        int index_b = 0;
+        for (int j = 0; j < array_a.length; j++) {
+            while (index_b < array_b.length) {
+                if (array_a[j] >= array_b[index_b]) {
+                    array_result[index_result_array] = array_a[j];
+                    index_result_array++;
+                    index_b++;
+                } else {
+                    break;
+                }
+            }
+            array_result[index_result_array] = array_a[j];
+            index_result_array++;
+        }
+        if (index_b < array_b.length) {
+            while (index_result_array < array_result.length){
+                array_result[index_result_array] = array_b[index_b];
+                index_b++;
+                index_result_array++;
+            }
+        }
+        System.out.println("Итоговый массив: ");
+        for (int i = 0; i < array_result.length; i++) {
+            System.out.print(array_result[i] + " ");
+        }
+    }
+	
+	
+	
+	
+Подмассив с макс суммой
+
+    public static void main(String[] args) {
+        int[] array = createArray();
+        findMaxSubarray(array);
+    }
+
+    public static int[] createArray() {
+        Scanner console = new Scanner(System.in);
+        System.out.print("Введите размер массива N: ");
+        int N = console.nextInt();
+        int[] array = new int[N];
+        // заполнение массива
+        for (int i = 0; i < array.length; i++) {
+            System.out.print("Введите элемент массива " + i + ": ");
+            array[i] = console.nextInt();
+        }
+        return array;
+    }
+
+    public static void findMaxSubarray(int[] array) {
+        int max_summ = array[0];
+        int first_index_subarray = 0;
+        int last_index_subarray = 0;
+        for (int i = 0; i < array.length; i++) {
+            int result = 0;
+            for (int j = i; j < array.length; j++) {
+                result = result + array[j];
+                if (max_summ < result) {
+                    max_summ = result;
+                    first_index_subarray = i;
+                    last_index_subarray = j;
+                }
+            }
+        }
+        System.out.println("макс сумма: " + max_summ);
+        System.out.println("подмассив с макс суммой: ");
+        for (int i = first_index_subarray; i <= last_index_subarray; i++) {
+            System.out.print(array[i] + " ");
+        }
+    }
+	
+	
+	
+ООП
+
+/*        Point tochka1 = new Point();
+        tochka1.coord_x = 3;
+        tochka1.coord_y = 7;
+        Point tochka2 = new Point();
+        tochka2.coord_x = 5;
+        tochka2.coord_y = 6;
+
+        tochka1.print();
+        tochka2.print();
+
+        Product kolbasa = new Product();
+        kolbasa.product_name = "Звениговская";
+        kolbasa.produst_cost = 1488;
+        kolbasa.productPrint();
+
+
+        Bill chek_products = new Bill();
+        chek_products.products_array[0] = kolbasa;
+        chek_products.products_array[1] = kolbasa;
+        chek_products.printProducts();
+        chek_products.printSummProducts();*/
+
+/*
+        Circle round = new Circle();
+        round.radius = 3.0;
+        round.calcCircleArea();
+
+        Triangle equal_side_triangle = new Triangle();
+        equal_side_triangle.side_triangle = 5.0;
+        equal_side_triangle.calcTriangleArea();
+
+        Square tetragon = new Square();
+        tetragon.side_square = 5;
+        tetragon.calcSquareArea();
+*/
+
+
+        int max_age = 0;
+        int index_max_age = 0;
+        Scanner console = new Scanner(System.in);
+        System.out.print("Введите количество людей: ");
+        int N = readFuckingInt(console);
+        Person[] array = new Person[N];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = new Person();
+            System.out.print("Введите ФИО: ");
+            array[i].fio = console.nextLine();
+            System.out.print("Введите возраст ");
+            array[i].age = readFuckingInt(console);
+            if (array[i].age > max_age) {
+                max_age = array[i].age;
+                index_max_age = i;
+            }
+        }
+        System.out.println("Самый старший: " + array[index_max_age].fio + ". Возраст: " + array[index_max_age].age);
+		
+		
+		
+		
+Запись в файл
+
+
+    public static void main(String[] args) throws IOException {
+        Scanner console = new Scanner(System.in);
+        System.out.print("Введите количество людей: ");
+        int N = readFuckingInt(console);
+        Person[] array = new Person[N];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = new Person();
+            System.out.print("Введите имя: ");
+            array[i].first_name = console.nextLine();
+            System.out.print("Введите фамилию: ");
+            array[i].last_name = console.nextLine();
+            System.out.print("Введите возраст ");
+            array[i].age = readFuckingInt(console);
+        }
+
+
+        FileWriter fileWriter = new FileWriter("D:\\петух.txt");
+        BufferedWriter writer = new BufferedWriter(fileWriter);
+        Formatter formatter = new Formatter(writer);
+        formatter.format("%20s %20s %20s", "Имя", "Фамилия", "Возраст\r\n");
+
+        for (int i = 0; i < N; i++) {
+            formatter.format("%20s %20s %20s", array[i].first_name, array[i].last_name, array[i].age + "\r\n");
+        }
+        formatter.flush();
+        formatter.close();
+    }
+
+
+    public static int readFuckingInt(Scanner scanner) {
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+
+
+Генератор ниже выше
+
+
+    public static void main(String[] args) {
+        Random random = new Random();
+        int randomize_generated_number = random.nextInt(100);
+        System.out.println("Печатаем сгенерированное число для проверки работы алгоритма: " + randomize_generated_number);
+        Scanner console = new Scanner(System.in);
+        int user_answer;
+        while (true) {
+            System.out.println("Введите вариант ответа: ");
+            user_answer = console.nextInt();
+            if (user_answer == randomize_generated_number) {
+                System.out.println("Вы молодцы");
+                break;
+            } else if(user_answer > randomize_generated_number) {
+                System.out.println("Ниже!!!");
+            } else if (user_answer < randomize_generated_number) {
+                System.out.println("Выше!!!");
+            }
+        }
+    }
+	
+	
+	
+Наследование
+
+ public static void main(String[] args) {
+        Circle circle = new Circle();
+        circle.side = 2.0;
+        System.out.println("круг: ");
+        circle.printArea();
+
+        Triangle triangle = new Triangle();
+        triangle.side = 2.0;
+        System.out.println("треугольник: ");
+        triangle.printArea();
+
+        Square square = new Square();
+        square.side = 2.0;
+        System.out.println("квадрат: ");
+        square.printArea();
+    }
+	
+	public class Figure {
+    double side;
+
+    public double getArea(double side) {
+        // вычисляем объем куба вместо площади для демонстрации наследования
+        double area = side * side * side;
+        return area;
+    }
+
+    public void printArea() {
+        System.out.println("Площадь фигуры: " + getArea(side));
+    }
+}
+
+
+public class Triangle extends Figure {
+
+
+    public double getArea(double side) {
+        double area = (side * side * Math.sqrt(3)) / 4;
+        return area;
+    }
+}
+
+
+Чтение из файла
+
+
+  public static void main(String[] args) throws FileNotFoundException {
+        FileInputStream fs = new FileInputStream("D:\\петух.txt");
+        Scanner scanner = new Scanner(fs);
+        int max_age = 0;
+        String name = null;
+
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            String[] current_line = line.split(",");
+            Integer age = Integer.valueOf(current_line[1]);
+            if (age > max_age) {
+                max_age = age;
+                name = current_line[0];
+            }
+        }
+        System.out.println("Самый старший: " + name);
+        System.out.println("Возраст: " + max_age);
+
+    }
+	
+	
+	
+Шифруем дешифруем
+
+
+    public static void main(String[] args) throws IOException {
+        Scanner console = new Scanner(System.in);
+        System.out.print("Введите строку-ключ: ");
+        String key_string = console.nextLine();
+        byte[] key_byteArray = key_string.getBytes();
+        System.out.println("Конвертируем строку-ключ в массив байт : " + Arrays.toString(key_byteArray));
+
+        byte[] file_array = Files.readAllBytes(Paths.get("D:\\image_encoded.txt"));
+        FileOutputStream fout = new FileOutputStream("D:\\image_decoded.txt");
+
+
+        // Шифруем
+
+/*            for (int i = 0; i < key_byteArray.length; i++) {
+                for (int n = i; n < file_array.length; n += key_byteArray.length) {
+                    file_array[n] = (byte) ((file_array[n] + key_byteArray[i]) % 256);
+                }
+            }*/
+
+
+        // Расшифровываем
+        for (int i = 0; i < key_byteArray.length; i++) {
+            for (int n = i; n < file_array.length; n += key_byteArray.length) {
+                int temp = file_array[n] - key_byteArray[i];
+                if (temp < 0) {
+                    temp = temp + 256;
+                }
+                file_array[n] = (byte) temp;
+            }
+        }
+
+        //пишем в файл
+        for (int i = 0; i < file_array.length; i++) {
+            fout.write(file_array[i]);
+        }
+
+        fout.close();
+
+
+        System.out.println("Finish!");
+    }
+
+
+	
+	
+	лист
+	
+	
+	    public static void main(String[] args) {
+        Scanner console = new Scanner(System.in);
+
+        // организация первого массива - заполняем рандомными числами
+        System.out.print("Введите размер массива N: ");
+        int N = console.nextInt();
+        int [] array_first = new int[N];
+        System.out.println("Первый массив: ");
+        for (int i = 0; i < array_first.length; i++) {
+            array_first[i] = (int) Math.round((Math.random() * 201) - 100);
+            System.out.print(array_first[i] + " ");
+        }
+
+        System.out.println();
+        // организация второго массива - заполняем рандомными числами
+        System.out.print("Введите размер массива M: ");
+        int M = console.nextInt();
+        int [] array_second = new int[M];
+        System.out.print("Второй массив: ");
+        for (int i = 0; i < array_second.length; i++) {
+            array_second[i] = (int) Math.round((Math.random() * 201) - 100);
+            System.out.print(array_second[i] + " ");
+        }
+
+        ArrayList<Integer> arr = arraysToList(array_first, array_second);
+        System.out.println();
+        System.out.println("Список без отрицательных элементов: ");
+        for (int i = 0; i < arr.size(); i++) {
+            Integer current = arr.get(i);
+            System.out.print(current + " ");
+        }
+     }
+
+    public static ArrayList<Integer> arraysToList(int[] array_1st, int[] array_2nd) {
+        ArrayList<Integer> new_list = new ArrayList<>();
+        for (int i = 0; i < array_1st.length; i++) {
+            new_list.add(array_1st[i]);
+        }
+        for (int i = 0; i < array_2nd.length; i++) {
+            new_list.add(array_2nd[i]);
+        }
+        // удаляем отрицательные элементы
+        new_list.removeIf(i -> i < 0);
+
+        return new_list;
+    }
+
+
+Джарник Намба Ван (массивы)
+
+public static void main(String[] args) {
+        int max_element = Integer.parseInt(args[0]);
+        int current_element = 0;
+        int summa_of_args = 0;
+
+        for (int i = 0; i < args.length; i++) {
+            current_element = Integer.parseInt(args[i]);
+            if (current_element > max_element) {
+                max_element = current_element;
+            }
+            summa_of_args += current_element;
+
+        }
+        // вывод результата
+        System.out.println("Максимальный элемент: " + max_element + " ");
+        System.out.println("сумма чисел: " + summa_of_args + " ");
+    }
+	
