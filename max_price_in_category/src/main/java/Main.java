@@ -2,6 +2,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -12,30 +15,28 @@ public class Main {
                 new File("/Users/kpirogov/Downloads/for_2nd_dz/prices.json"),
                 EveryPrice[].class);
 
-        //ищем максимальный номинал категории
-        int max_element = 0;
+        //хэш мап результатов: ключ - айди, значение - прайс
+        HashMap<Integer, Integer> result_map = new HashMap<>();
+
         for (int i = 0; i < prices.length; i++) {
-            if (prices[i].getCategory_id() > max_element) {
-                max_element = prices[i].getCategory_id();
-            }
-        }
-
-        // массив результатов: индекс = категория, элемент = максимальный прайс. Нулевой индекс пропустим
-        int[] array = new int[max_element + 1];
-
-        for (int i = 1; i < array.length; i++) {
-            for (int j = 0; j < prices.length; j++) {
-                if ( i == prices[j].getCategory_id() && prices[j].getPrice() > array[i]) {
-                    array[i] = prices[j].getPrice();
+            // если в мапе есть такой айдишник и прайс больше - кладем туда новый прайс
+            if (result_map.containsKey(prices[i].getCategory_id())) {
+                if (prices[i].getPrice() > result_map.get(prices[i].getCategory_id())) {
+                    result_map.put(prices[i].getCategory_id(), prices[i].getPrice());
                 }
+            // если в мапе нет айдишника - добавляем новую пару ключ - значение
+            } else {
+                result_map.put(prices[i].getCategory_id(), prices[i].getPrice());
             }
         }
 
-        //выводим результат
-        for (int i = 1; i < array.length; i++) {
-            System.out.println("Категория: " + i);
-            System.out.println("Максимальный прайс: " + array[i]);
+        //выводим в цикле данные с мапы по порядку
+        for (HashMap.Entry<Integer, Integer> entry: result_map.entrySet()) {
+
+            System.out.println("Категория: " + entry.getKey());
+            System.out.println("Максимальный прайс: " + entry.getValue());
             System.out.println();
+
         }
     }
 }
